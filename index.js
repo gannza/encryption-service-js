@@ -13,11 +13,14 @@ class EncryptionService {
     // Convert the data to a JSON string
     const jsonData = JSON.stringify(data);
 
+    // Generate a 32-byte key using the secret key
+    const derivedKey = crypto.scryptSync(secretKey, 'salt', 32);
+
     // Generate an initialization vector (IV)
     const iv = crypto.randomBytes(16);
 
     // Create a cipher using AES-256-CBC algorithm
-    const cipher = crypto.createCipheriv('aes-256-cbc', secretKey, iv);
+    const cipher = crypto.createCipheriv('aes-256-cbc', derivedKey, iv);
 
     // Encrypt the JSON data
     let encryptedData = cipher.update(jsonData, 'utf8', 'base64');
@@ -48,8 +51,11 @@ class EncryptionService {
     // Get the encrypted data (remaining bytes)
     const data = encryptedData.slice(16);
 
+    // Generate a 32-byte key using the secret key
+    const derivedKey = crypto.scryptSync(secretKey, 'salt', 32);
+
     // Create a decipher using AES-256-CBC algorithm
-    const decipher = crypto.createDecipheriv('aes-256-cbc', secretKey, iv);
+    const decipher = crypto.createDecipheriv('aes-256-cbc', derivedKey, iv);
 
     // Decrypt the data
     let decryptedData = decipher.update(data, 'base64', 'utf8');
@@ -64,7 +70,7 @@ class EncryptionService {
     }
 
     // Convert the JSON string back to an object
-    let decryptedObject
+    let decryptedObject;
     try {
       decryptedObject = JSON.parse(decryptedData);
     } catch (error) {
