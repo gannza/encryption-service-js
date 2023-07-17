@@ -24,8 +24,14 @@ const EncryptionService = require('encryption-service');
 
 const encryption = new EncryptionService();
 
-// Example usage
+let data = {id=>1};
+let secretKey='Your Secret Key';
+
+//for encryption
+
 const encryptedData = encryption.encrypt(data, secretKey);
+
+//for decryption
 
 const decryptedData = encryption.decrypt(encryptedData, secretKey);
 
