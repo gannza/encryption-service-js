@@ -1,0 +1,19 @@
+{
+    "name": "encryption-service",
+    "version": "1.0.0",
+    "description": "Encryption service library",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "encryption",
+        "security",
+        "cryptography"
+    ],
+    "author": "Ganza Jean Respice",
+    "license": "MIT",
+    "dependencies": {
+        "crypto": "^1.0.1"
+    }
+}
