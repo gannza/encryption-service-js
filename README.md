@@ -24,8 +24,8 @@ const EncryptionService = require('encryption-service');
 
 const encryption = new EncryptionService();
 
-let data = {id=>1};
-let secretKey='Your Secret Key';
+const data = {id:1}; //data can be object,array or string
+const secretKey='Your Secret Key';
 
 //for encryption
 
